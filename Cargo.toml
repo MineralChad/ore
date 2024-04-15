@@ -29,6 +29,7 @@ spl-token = { version = "^4", features = ["no-entrypoint"] }
 spl-associated-token-account = { version = "^2.2", features = [ "no-entrypoint" ] } 
 static_assertions = "1.1.0"
 thiserror = "1.0.57"
+solana-client = "1.18.11"
 
 [dev-dependencies]
 bs64 = "0.1.2"

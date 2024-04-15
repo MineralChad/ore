@@ -1,6 +1,6 @@
 # Ore
 
-**Ore is a digital currency you can mine from anywhere, at home or on your phone.** It uses a novel proof-of-work algorithm to guarantee no miner can ever be starved out from earning rewards. 
+**Ore is a digital currency you can mine from anywhere, at home or on your phone.** It uses a novel proof-of-work algorithm to guarantee no miner can ever be starved out from earning rewards.
 
 
 ## How it works
@@ -40,7 +40,7 @@ Ore is designed to protect holders from runaway supply inflation. Regardless of 
 
 ## Tests
 
-To run the test suite, use the Solana toolchain: 
+To run the test suite, use the Solana toolchain:
 
 ```
 cargo test-sbf
@@ -50,4 +50,14 @@ For line coverage, use llvm-cov:
 
 ```
 cargo llvm-cov
+```
+
+## Running on localnet
+
+```sh
+# Build
+cargo build-bpf
+
+# Deploy program
+solana-test-validator --reset --bpf-program mineRHF5r6S7HyD9SppBfVMXMavDkJsxwGesEvxZr2A ./target/sbf-solana-solana/release/ore.so --bpf-program metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s ./tests/buffers/metadata_program.bpf
 ```
