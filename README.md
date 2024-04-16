@@ -60,4 +60,6 @@ cargo build-bpf
 
 # Deploy program
 solana-test-validator --reset --bpf-program mineRHF5r6S7HyD9SppBfVMXMavDkJsxwGesEvxZr2A ./target/sbf-solana-solana/release/ore.so --bpf-program metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s ./tests/buffers/metadata_program.bpf
+
+solana-test-validator --reset --bpf-program mineRHF5r6S7HyD9SppBfVMXMavDkJsxwGesEvxZr2A ./ore.so --bpf-program metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s ./tests/buffers/metadata_program.bpf
 ```

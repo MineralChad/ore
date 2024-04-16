@@ -1,16 +1,7 @@
 use std::mem::size_of;
 
 use solana_program::{
-    account_info::AccountInfo,
-    clock::Clock,
-    entrypoint::ProgramResult,
-    keccak::{hashv, Hash as KeccakHash, HASH_BYTES},
-    program::set_return_data,
-    program_error::ProgramError,
-    program_memory::sol_memcmp,
-    pubkey::Pubkey,
-    slot_hashes::SlotHash,
-    sysvar::{self, Sysvar},
+    account_info::AccountInfo, clock::Clock, entrypoint::ProgramResult, keccak::{hashv, Hash as KeccakHash, HASH_BYTES}, log, program::set_return_data, program_error::ProgramError, program_memory::sol_memcmp, pubkey::Pubkey, slot_hashes::SlotHash, sysvar::{self, Sysvar}
 };
 
 use crate::{
@@ -63,6 +54,10 @@ pub fn process_mine<'a, 'info>(
     let treasury_data = treasury_info.data.borrow();
     let treasury = Treasury::try_from_bytes(&treasury_data)?;
     let threshold = treasury.last_reset_at.saturating_add(EPOCH_DURATION);
+
+    let msg = format!("Clock time {}, last_reset_at {}, diff {}", clock.unix_timestamp, treasury.last_reset_at, clock.unix_timestamp - treasury.last_reset_at);
+    log::sol_log(msg.as_str());
+
     if clock.unix_timestamp.ge(&threshold) {
         return Err(OreError::NeedsReset.into());
     }
